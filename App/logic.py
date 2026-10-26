@@ -36,7 +36,7 @@ from DataStructures.Map import map_linear_probing as lp
 
 from DataStructures.List import single_linked_list as sl
 
-data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/Boston Crimes/'
+data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
 def new_logic():
     """ Inicializa el analizador
@@ -192,9 +192,8 @@ def get_crimes_by_range(analyzer, initialDate, finalDate):
     """
     Retorna el numero de crimenes en un rago de fechas.
     """
-    init_date = datetime.datetime.strptime(initialDate, '%Y-%m-%d').date()
-    end_date = datetime.datetime.strptime(finalDate, '%Y-%m-%d').date()
-
+    init_date = datetime.datetime.strptime(initialDate.strip(), '%Y-%m-%d').date()
+    end_date = datetime.datetime.strptime(finalDate.strip(), '%Y-%m-%d').date()
     date_entries = bst.values(analyzer['dateIndex'], init_date, end_date)
     if date_entries is None:
         return 0
@@ -212,7 +211,7 @@ def get_crimes_by_range_code(analyzer, initialDate, offensecode):
     Para una fecha determinada, retorna el numero de crimenes
     de un tipo especifico.
     """
-    crimedate = datetime.datetime.strptime(initialDate, '%Y-%m-%d').date()
+    crimedate = datetime.datetime.strptime(initialDate.strip(), '%Y-%m-%d').date()
 
     entry = bst.get(analyzer['dateIndex'], crimedate)
     if entry is None:
