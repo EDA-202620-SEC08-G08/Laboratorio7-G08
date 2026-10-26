@@ -30,9 +30,11 @@ import datetime
 
 from DataStructures.Tree import binary_search_tree as bst
 # TODO Realice la importación de ArrayList (al) como estructura de datos auxiliar para sus requerimientos
-from DataStructures.List import arraylist as al
+from DataStructures.List import array_list as al
 # TODO Realice la importación de LinearProbing (lp) como estructura de datos auxiliar para sus requerimientos
 from DataStructures.Map import map_linear_probing as lp
+
+from DataStructures.List import single_linked_list as sl
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/Boston Crimes/'
 
@@ -198,11 +200,10 @@ def get_crimes_by_range(analyzer, initialDate, finalDate):
         return 0
 
     total_crimes = 0
-    num_entries = al.size(date_entries)
+    num_entries = sl.size(date_entries)
     for i in range(num_entries):
-        entry = al.get_element(date_entries, i)
+        entry = sl.get_element(date_entries, i)
         total_crimes += al.size(entry['lstcrimes'])
-
     return total_crimes
 
 
